@@ -1,7 +1,16 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 
-export default function Home() {
+export function getStaticProps() {
+  return {
+    props: {
+      date: new Date().toString()
+    },
+    revalidate: 5,
+  } 
+}
+
+export default function Home(props) {
   return (
     <div className={styles.container}>
       <Head>
@@ -11,7 +20,7 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+	  {props.date}
         </h1>
 
         <p className={styles.description}>
